@@ -2,8 +2,6 @@ const { JsonWebTokenError } = require("jsonwebtoken");
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Favorite = require("../models/Favorite.model");
-const Cart = require("../models/Cart.model");
 
 module.exports.userController = {
   // Регистрация пользователя
@@ -23,12 +21,6 @@ module.exports.userController = {
       login: login,
       password: hash,
       role: "user",
-    });
-    await Favorite.create({
-      userId: user._id,
-    });
-    await Cart.create({
-      userId: user._id,
     });
     res.json(user);
   },
@@ -67,12 +59,7 @@ module.exports.userController = {
       name,
       subName,
       phone,
-      address,
-      email,
       password,
-      country,
-      city,
-      zipCode,
     } = req.body;
     const userId = req.user.id;
     try {
@@ -91,12 +78,7 @@ module.exports.userController = {
       user.name = name || user.name;
       user.subName = subName || user.subName;
       user.phone = phone || user.phone;
-      user.address = address || user.address;
-      user.email = email || user.email;
       user.password = password !== "" ? hash : user.password;
-      user.country = country || user.country;
-      user.city = city || user.city;
-      user.zipCode = zipCode || user.zipCode;
 
       // Сохранить обновленные данные пользователя
       await user.save();
