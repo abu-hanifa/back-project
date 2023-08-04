@@ -20,7 +20,6 @@ module.exports.userController = {
       name: name,
       login: login,
       password: hash,
-      role: "user",
     });
     res.json(user);
   },
