@@ -49,18 +49,32 @@ module.exports.userController = {
   },
   // вывод одного пользователя
   getUser: async (req, res) => {
-    const data = await User.findById(req.user.id);
-    res.json(data);
+    try {
+      const data = await User.findById(req.user.id);
+      res.json(data);
+    } catch (error) {
+      res.json(`${error}: get user error`);
+    }
   },
-
+  findUser: async (req, res) => {
+    try {
+      const data = await User.findById(req.params.id);
+      res.json(data);
+    } catch (error) {
+      res.json(`${error}: find user error`);
+    }
+  },
+  getUsers: async (req, res) => {
+    try {
+      const data = await User.find();
+      res.json(data);
+    } catch (error) {
+      res.json(`${error}: find users error`);
+    }
+  },
   // обновление данных пользователя
   updateUser: async (req, res) => {
-    const {
-      name,
-      subName,
-      phone,
-      password,
-    } = req.body;
+    const { name, subName, phone, password } = req.body;
     const userId = req.user.id;
     try {
       // Найти пользователя по его ID
