@@ -7,9 +7,6 @@ const router = Router();
 const { registerValidation, loginValidation } = require("../middlewares/validation.middleware");
 const handleValidationError = require("../middlewares/handleValidationError");
 
-
-const router = Router();
-
 router.post("/registration", registerValidation, handleValidationError, userController.registration); // Регистрация пользователя
 router.post("/login", loginValidation, handleValidationError, userController.login); // Вход в учетную запись
 router.get("/user", authMiddleware, userController.getUser); // вывод пользователя
