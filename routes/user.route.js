@@ -1,12 +1,11 @@
 const { Router } = require("express");
 const { userController } = require("../controllers/user.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
-const { loginValidation, registerValidation } = require("../middlewares/validation.middleware");
 
 const router = Router();
 
-router.post("/registration", registerValidation,  userController.registration); // Регистрация пользователя
-router.post("/login",  loginValidation, userController.login); // Вход в учетную запись
+router.post("/registration",  userController.registration); // Регистрация пользователя
+router.post("/login", userController.login); // Вход в учетную запись
 router.get("/user", authMiddleware, userController.getUser); // вывод пользователя
 router.get("/find-user/:id", userController.findUser); // вывод пользователя
 router.get("/find-users", userController.getUsers); // вывод пользователя

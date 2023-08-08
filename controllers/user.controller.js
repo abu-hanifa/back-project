@@ -44,7 +44,7 @@ module.exports.userController = {
       expiresIn: "72h",
     });
 
-    res.json(token);
+    res.json({ ...payload, token });
   },
   // вывод одного пользователя
   getUser: async (req, res) => {
