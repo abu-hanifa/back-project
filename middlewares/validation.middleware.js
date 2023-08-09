@@ -1,20 +1,23 @@
-const { body } = require('express-validator');
+const { body } = require("express-validator");
 
 const loginValidation = [
-    body('email', 'Неверный формат почты').isEmail(),
-    body('password', 'Пароль должен быть минимум 5 символов').isLength({ min: 5 }),
+  body("login", "Неверный формат почты").isEmail(),
+  body("password", "Пароль должен быть минимум 5 символов").isLength({
+    min: 5,
+  }),
 ];
 
 const registerValidation = [
-    body('email', 'Неверный формат почты').isEmail(),
-    body('password', 'Пароль должен быть минимум 5 символов').isLength({ min: 5 }),
-    body('name', 'Укажите имя').isLength({ min: 3 }),
-    body('subName', 'Укажите фамилию').isLength({ min: 3 }),
-    body('phone', 'Неверный формат номера телефона').isMobilePhone(undefined, { strictMode: false }),
-    // body('avatarUrl', 'Неверная ссылка на аватарку').isURL(),
+  body("login", "Неверный формат почты").isEmail(),
+  body("password", "Пароль должен быть минимум 5 символов").isLength({
+    min: 5,
+  }),
+  body("name", "Укажите имя").isLength({ min: 3 }),
+  body("subName", "Укажите фамилию").isLength({ min: 3 }),
+  // body('avatarUrl', 'Неверная ссылка на аватарку').isURL(),
 ];
 
 module.exports = {
-    loginValidation,
-    registerValidation
+  loginValidation,
+  registerValidation,
 };
