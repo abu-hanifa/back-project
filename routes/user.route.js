@@ -4,11 +4,24 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 const router = Router();
 
-const { registerValidation, loginValidation } = require("../middlewares/validation.middleware");
+const {
+  registerValidation,
+  loginValidation,
+} = require("../middlewares/validation.middleware");
 const handleValidationError = require("../middlewares/handleValidationError");
 
-router.post("/registration", registerValidation, handleValidationError, userController.registration); // Регистрация пользователя
-router.post("/login", loginValidation, handleValidationError, userController.login); // Вход в учетную запись
+router.post(
+  "/registration",
+  registerValidation,
+  handleValidationError,
+  userController.registration
+); // Регистрация пользователя
+router.post(
+  "/login",
+  loginValidation,
+  handleValidationError,
+  userController.login
+); // Вход в учетную запись
 router.get("/user", authMiddleware, userController.getUser); // вывод пользователя
 router.get("/find-user/:id", userController.findUser); // вывод пользователя
 router.get("/find-users", userController.getUsers); // вывод пользователя

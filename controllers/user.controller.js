@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 module.exports.userController = {
   // Регистрация пользователя
   registration: async (req, res) => {
-    const { login, password, name } = req.body;
+    const { name, subName, login, password } = req.body;
     const candidate = await User.findOne({ login });
     if (candidate) {
       return res
@@ -18,7 +18,8 @@ module.exports.userController = {
 
     const user = await User.create({
       name: name,
-      login: login,
+      subName: subName,
+      login,
       password: hash,
     });
     res.json(user);
@@ -73,7 +74,7 @@ module.exports.userController = {
   },
   // обновление данных пользователя
   updateUser: async (req, res) => {
-    const { name, subName, phone, password } = req.body;
+    const { name, subName, email, password } = req.body;
     const userId = req.user.id;
     try {
       // Найти пользователя по его ID
@@ -90,7 +91,7 @@ module.exports.userController = {
       // Обновить свойства пользователя
       user.name = name || user.name;
       user.subName = subName || user.subName;
-      user.phone = phone || user.phone;
+      user.email = email || user.email;
       user.password = password !== "" ? hash : user.password;
 
       // Сохранить обновленные данные пользователя
