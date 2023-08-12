@@ -117,4 +117,16 @@ module.exports.userController = {
       res.status(500).json({ error: "Ошибка при удалении пользователя" });
     }
   },
+  getContact: async (req, res) => {
+    const user = await User.find({Contact: req.params.id})
+    res.json(user)
+},
+patchContact: async (req, res) => {
+ const contact =  await User.findByIdAndUpdate(req.params.id, {$push: {contacts: req.body.contacts}})
+ res.json(contact)
+},
+deleteContact: async (req, res) => {
+  const contact = await User.findByIdAndUpdate(req.params.id,{ $pull: {contacts: req.body.contacts}} )
+  res.json(contact)
+}
 };

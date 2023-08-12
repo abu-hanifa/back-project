@@ -16,6 +16,7 @@ app.use(require("./routes/user.route"));
 app.use(require("./routes/chat.route"));
 app.use(require("./routes/message.route"));
 
+
 const userSockets = {};
 
 io.on("connection", (socket) => {

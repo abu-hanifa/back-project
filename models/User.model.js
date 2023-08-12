@@ -5,6 +5,10 @@ const userSchema = mongoose.Schema({
   subName: String,
   login: String,
   password: String,
+  contacts: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Contact'
+  }
 });
 
 const User = mongoose.model("User", userSchema);

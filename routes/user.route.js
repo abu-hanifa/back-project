@@ -27,4 +27,7 @@ router.get("/find-user/:id", userController.findUser); // вывод польз�
 router.get("/find-users", userController.getUsers); // вывод пользователя
 router.patch("/user/update", authMiddleware, userController.updateUser); // изменение данных
 router.delete("/user/delete", authMiddleware, userController.deleteUser); // удаление пользователя
+router.get('/contact/:id', userController.getContact)//вывод контактов пользователя
+router.patch('/contact/:id',userController.patchContact )
+router.delete('/contact/:id', userController.deleteContact)
 module.exports = router;
